@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="makeIntFile">创建内部文件</string>
+    <string name="makeExtFile">创建外部文件</string>    
+    <string name="file_select">请选择文件</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_done">完成</string>
+</resources>
