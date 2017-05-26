@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 
@@ -16,7 +17,9 @@ import com.example.weixin50.R;
  */
 public final class PermissionUtils {
 
-    public static boolean checkPermisssion(Activity activity, String permission, String dialogMessage, int requestCode, boolean finished) {
+
+    // //在Activity中使用，走Activity的onRequestPermissionsResult回调
+    public static boolean checkActivityPermisssion(Activity activity, String permission, String dialogMessage, int requestCode, boolean finished) {
         if (!hasPermission(activity, permission)) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
                 createPermissionDialog(activity, dialogMessage, finished);
@@ -27,6 +30,31 @@ public final class PermissionUtils {
         }
         return true;
     }
+
+    //在Fragment中使用，走Fragment的onRequestPermissionsResult回调
+    public static boolean checkFragmentPermisssion(Activity activity, Fragment fragment, String permission, String dialogMessage, int requestCode, boolean finished) {
+        if (!hasPermission(activity, permission)) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
+                createPermissionDialog(activity, dialogMessage, finished);
+            } else {
+                fragment.requestPermissions(new String[]{permission}, requestCode);
+            }
+            return false;
+        }
+        return true;
+    }
+
+//    public static boolean checkPermisssion(Activity activity, String permission, String dialogMessage, int requestCode, boolean finished) {
+//        if (!hasPermission(activity, permission)) {
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
+//                createPermissionDialog(activity, dialogMessage, finished);
+//            } else {
+//                ActivityCompat.requestPermissions(activity, new String[]{permission}, requestCode);
+//            }
+//            return false;
+//        }
+//        return true;
+//    }
 
     public static void createPermissionDialog(final Activity activity, String message, final boolean finished) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);

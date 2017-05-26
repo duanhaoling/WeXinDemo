@@ -4,17 +4,26 @@ buildscript {
         maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.2'
         classpath 'me.tatarka:gradle-retrolambda:3.3.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
+
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
 
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.example.weixin50"
@@ -37,11 +46,12 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
+    //lambda表达式配置 (retrolambda)
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.alibaba:fastjson:1.2.16'
     compile 'com.jakewharton:butterknife:7.0.1'
-    //lambda表达式配置 (retrolambda)
-    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.3.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.3.0'
 }

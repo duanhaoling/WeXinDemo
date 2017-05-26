@@ -1,9 +1,7 @@
 package com.example.weixin50;
 
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -17,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.weixin50.imageloader.PermissionUtils;
+import com.example.weixin50.widget.BadgeView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,26 +148,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case ContactMainTabFragment.PERMISSION_REQUEST_STOTAGE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    tab03.checkPicker();
-                } else {
-                    PermissionUtils.createPermissionDialog(this, getString(R.string.permission_tips, getString(R.string.app_name), getString(R.string.permission_storage)), false);
-                }
-                break;
-            case ContactMainTabFragment.PERMISSION_REQUEST_CAMERA:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    tab03.checkCamera();
-                } else {
-                    PermissionUtils.createPermissionDialog(this, getString(R.string.permission_tips, getString(R.string.app_name), getString(R.string.permission_camera)), false);
-                }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-    }
+
 
 }

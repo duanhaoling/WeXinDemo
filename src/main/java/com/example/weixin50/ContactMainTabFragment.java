@@ -32,6 +32,8 @@ import java.io.File;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static com.example.weixin50.R.layout.tab03;
+
 /**
  * Created by ldh on 2016/8/31 0031.
  */
@@ -52,7 +54,7 @@ public class ContactMainTabFragment extends Fragment implements View.OnClickList
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab03, container, false);
+        View view = inflater.inflate(tab03, container, false);
         ButterKnife.bind(this, view);
         initView();
         mActivity = getActivity();
@@ -91,8 +93,9 @@ public class ContactMainTabFragment extends Fragment implements View.OnClickList
 
     public static final int PERMISSION_REQUEST_CAMERA = 10;
     public static final int PERMISSION_REQUEST_STOTAGE = 11;
+
     public void checkCamera() {
-        if (PermissionUtils.checkPermisssion(getActivity(), Manifest.permission.CAMERA,
+        if (PermissionUtils.checkFragmentPermisssion(getActivity(), this, Manifest.permission.CAMERA,
                 getString(R.string.permission_tips, getString(R.string.app_name), getString(R.string.permission_camera)), PERMISSION_REQUEST_CAMERA, false)) {
             gotoCamera();
         }
@@ -112,7 +115,7 @@ public class ContactMainTabFragment extends Fragment implements View.OnClickList
     }
 
     public void checkPicker() {
-        if (PermissionUtils.checkPermisssion(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE,
+        if (PermissionUtils.checkFragmentPermisssion(getActivity(), this, Manifest.permission.READ_EXTERNAL_STORAGE,
                 getString(R.string.permission_tips, getString(R.string.app_name), getString(R.string.permission_storage)), PERMISSION_REQUEST_STOTAGE, false)) {
             gotoPicture();
         }
@@ -130,17 +133,25 @@ public class ContactMainTabFragment extends Fragment implements View.OnClickList
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
-            case 100:
+            case PERMISSION_REQUEST_STOTAGE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     checkPicker();
                 } else {
                     PermissionUtils.createPermissionDialog(getActivity(), getString(R.string.permission_tips, getString(R.string.app_name), getString(R.string.permission_storage)), false);
                 }
                 break;
+            case PERMISSION_REQUEST_CAMERA:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    checkCamera();
+                } else {
+                    PermissionUtils.createPermissionDialog(getActivity(), getString(R.string.permission_tips, getString(R.string.app_name), getString(R.string.permission_camera)), false);
+                }
+                break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+
 
     /**
      * 走fragment中的回调，不走activity中的回调
@@ -164,7 +175,7 @@ public class ContactMainTabFragment extends Fragment implements View.OnClickList
                 }
                 break;
             case REQUEST_CAMERA:
-                if (resultCode ==Activity.RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK) {
                     String path = "file://" + cacheFile.getAbsolutePath();
                     text.setText(path);
 //                    if (!TextUtils.isEmpty(path)) {
@@ -173,7 +184,7 @@ public class ContactMainTabFragment extends Fragment implements View.OnClickList
 //                    }
                     onOk("file://" + cacheFile.getAbsolutePath());
                 } else {
-                    Toast.makeText(getActivity(),"图片返回失败",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "图片返回失败", Toast.LENGTH_LONG).show();
                 }
             default:
                 break;

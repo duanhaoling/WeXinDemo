@@ -18,13 +18,14 @@
  * limitations under the License.
  */
 
-package com.example.weixin50;
+package com.example.weixin50.widget;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -34,10 +35,9 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.TabWidget;
-import android.widget.TextView;
 
 
-public class BadgeView extends TextView {
+public class BadgeView extends android.support.v7.widget.AppCompatTextView {
 
     private boolean mHideOnNull = true;
 
@@ -88,7 +88,9 @@ public class BadgeView extends TextView {
         RoundRectShape roundRect = new RoundRectShape(radiusArray, null, null);
         ShapeDrawable bgDrawable = new ShapeDrawable(roundRect);
         bgDrawable.getPaint().setColor(badgeColor);
-        setBackground(bgDrawable);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            setBackground(bgDrawable);
+        }
     }
 
     /**
