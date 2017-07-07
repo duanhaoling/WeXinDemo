@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.weixin50.camera.MediaRecorderActivity;
-import com.example.weixin50.camera.TakePicActivity;
+import com.example.weixin50.camera.ShootVideoActivity;
+import com.example.weixin50.camera.TakePicAndVideoActivity;
 import com.example.weixin50.camera.TakePictueActivity;
 import com.example.weixin50.fileproviderserver.FileProviderDemo;
 import com.example.weixin50.imageloader.ImageLoader;
@@ -76,8 +76,8 @@ public class ChatMainTabFragment extends Fragment {
         startActivity(intent);
     }
 
-    private void takePic(){
-        gotoActivity(TakePicActivity.class);
+    private void takePic() {
+        gotoActivity(TakePicAndVideoActivity.class);
     }
 
     private void takePicture() {
@@ -86,7 +86,7 @@ public class ChatMainTabFragment extends Fragment {
     }
 
     private void jsonObjectRequest() {
-        gotoActivity(MediaRecorderActivity.class);
+        gotoActivity(ShootVideoActivity.class);
     }
 
     private void testImageLoader() {

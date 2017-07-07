@@ -31,7 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.weixin50.R;
-import com.example.weixin50.camera.ShowPicActivity;
+import com.example.weixin50.camera.ShowPicAndPlayVideoActivity;
 import com.example.weixin50.widget.CircleProgressView;
 
 import java.io.File;
@@ -329,7 +329,7 @@ public class TakePicTestActivity extends AppCompatActivity implements Camera.Pre
 //                        finish();
                 if (second > 1) {
                     freeCameraResource();
-                    Intent displayIntent = new Intent(TakePicTestActivity.this, ShowPicActivity.class);
+                    Intent displayIntent = new Intent(TakePicTestActivity.this, ShowPicAndPlayVideoActivity.class);
                     bundle = new Bundle();
                     bundle.putBoolean("isRecord", isRecordState);
                     bundle.putString("video_path", out.getAbsolutePath());//视频路径
@@ -565,9 +565,9 @@ public class TakePicTestActivity extends AppCompatActivity implements Camera.Pre
                     Toast.makeText(getApplicationContext(), "请先拍照",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(TakePicTestActivity.this, ShowPicActivity.class);
+                    Intent intent = new Intent(TakePicTestActivity.this, ShowPicAndPlayVideoActivity.class);
 
-                    //  intent.setClass(getApplicationContext(), ShowPicActivity.class);
+                    //  intent.setClass(getApplicationContext(), ShowPicAndPlayVideoActivity.class);
                     bundle.putBoolean("isRecord", isRecordState);
                     bundle.putInt("isPosition", cameraPosition);
                     bundle.putInt("isScreenConfigChange", isScreenConfigChange);

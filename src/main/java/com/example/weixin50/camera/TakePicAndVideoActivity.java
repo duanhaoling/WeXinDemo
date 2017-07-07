@@ -44,7 +44,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class TakePicActivity extends AppCompatActivity {
+public class TakePicAndVideoActivity extends AppCompatActivity {
     private static final String TAG = "TakePicTestActivity";
     SurfaceView surfaceView;
     SurfaceHolder surfaceHolder;
@@ -169,7 +169,7 @@ public class TakePicActivity extends AppCompatActivity {
                     mMediaRecorder.setVideoSize(320, 240);
                     mMediaRecorder.setVideoEncodingBitRate(1 * 1024 * 1024);// 设置帧频率，然后就清晰了
 //                    mMediaRecorder.setVideoFrameRate(35);
-                    mMediaRecorder.setOrientationHint(getPreviewDegree(TakePicActivity.this));// 输出旋转90度，保持竖屏录制
+                    mMediaRecorder.setOrientationHint(getPreviewDegree(TakePicAndVideoActivity.this));// 输出旋转90度，保持竖屏录制
                     try {
                         mRecAudioFile = File.createTempFile("Vedio", ".mp4", mRecVedioPath);
                     } catch (IOException e) {
@@ -259,7 +259,7 @@ public class TakePicActivity extends AppCompatActivity {
 //                        backIntent.putExtra("path", mrv_wx.mVecordFile.getAbsoluteFile().toString());
 //                        setResult(RESULT_OK, backIntent);
 //                        finish();
-                Intent displayIntent = new Intent(TakePicActivity.this, ShowPicActivity.class);
+                Intent displayIntent = new Intent(TakePicAndVideoActivity.this, ShowPicAndPlayVideoActivity.class);
                 bundle = new Bundle();
                 bundle.putBoolean("isRecord", isRecordState);
                 bundle.putString("video_path", out.getAbsolutePath());
@@ -328,7 +328,7 @@ public class TakePicActivity extends AppCompatActivity {
 //                    parameters.set("orientation", "portrait");
                 camera.setParameters(parameters);
                 camera.setPreviewDisplay(holder); // 设置用于显示拍照影像的SurfaceHolder对象
-                camera.setDisplayOrientation(getPreviewDegree(TakePicActivity.this));
+                camera.setDisplayOrientation(getPreviewDegree(TakePicAndVideoActivity.this));
                 camera.startPreview(); // 开始预览
                 isPreview = true;
 //                camera.autoFocus(null);
@@ -434,7 +434,7 @@ public class TakePicActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent();
-                    intent.setClass(getApplicationContext(), ShowPicActivity.class);
+                    intent.setClass(getApplicationContext(), ShowPicAndPlayVideoActivity.class);
                     bundle.putBoolean("isRecord", isRecordState);
                     intent.putExtras(bundle);
                     startActivity(intent);

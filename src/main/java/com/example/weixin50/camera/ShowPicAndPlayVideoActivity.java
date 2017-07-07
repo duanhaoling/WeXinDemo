@@ -30,10 +30,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ShowPicActivity extends AppCompatActivity {
+public class ShowPicAndPlayVideoActivity extends AppCompatActivity {
 
     private final static String ALBUM_PATH = Environment.getExternalStorageDirectory() + "/download_img/";
-    private static final String TAG = "ShowPicActivity";
+    private static final String TAG = "ShowPicAndPlayVideoActivity";
     String imgName;
     ImageView iv_play;
     @Bind(R.id.iv_back2)
@@ -91,7 +91,7 @@ public class ShowPicActivity extends AppCompatActivity {
         Bitmap cameraBitmap = byte2Bitmap();
         // 根据拍摄的方向旋转图像（纵向拍摄时要需要将图像选择90度)
         Matrix matrix = new Matrix();
-        matrix.setRotate(TakePicActivity.getPreviewDegree(this));
+        matrix.setRotate(TakePicAndVideoActivity.getPreviewDegree(this));
 
 
         cameraBitmap = Bitmap
@@ -176,7 +176,7 @@ public class ShowPicActivity extends AppCompatActivity {
 
                 break;
             case R.id.tv_repeat:
-                Intent intent1 = new Intent(ShowPicActivity.this, TakePicActivity.class);
+                Intent intent1 = new Intent(ShowPicAndPlayVideoActivity.this, TakePicAndVideoActivity.class);
                 startActivity(intent1);
                 finish();
                 break;

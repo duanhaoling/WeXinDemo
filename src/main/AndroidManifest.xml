@@ -61,8 +61,8 @@
         <activity android:name=".camera.TakePictueActivity" />
         <activity android:name=".camera.MediaRecorderActivity" />
         <activity android:name=".trashcan.TakePicTestActivity" />
-        <activity android:name=".camera.ShowPicActivity" />
-        <activity android:name=".camera.TakePicActivity"
+        <activity android:name=".camera.ShowPicAndPlayVideoActivity" />
+        <activity android:name=".camera.TakePicAndVideoActivity"
             android:screenOrientation="portrait"
             />
     </application>

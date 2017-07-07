@@ -7,4 +7,12 @@
     <color name="gray">#969696</color>
     <color name="white">#fff</color>
     <color name="text_white">#aaa</color>
+    <color name="brokerOrangeColor">#FF8700</color>
+    <color name="ajkWhiteColor">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="brokerWhiteColor">#ffffff</color>
+    <color name="brokerLightGrayColor">#cccccc</color>
+    <color name="shoot_video_view_bg">#7f333333</color>
+    <color name="brokerRedColor">#f53732</color>
+    <color name="brokerBlackColor">#333333</color>
 </resources>

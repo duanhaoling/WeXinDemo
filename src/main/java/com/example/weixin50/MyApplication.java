@@ -1,6 +1,7 @@
 package com.example.weixin50;
 
 import android.app.Application;
+import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
@@ -15,10 +16,12 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 public class MyApplication extends Application {
 
     private ImageLoader imageLoader;
+    private static MyApplication sInstance;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        sInstance = this;
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
@@ -59,5 +62,9 @@ public class MyApplication extends Application {
                 }
             }
         }.start();*/
+    }
+
+    public static Context getInstance() {
+        return sInstance;
     }
 }

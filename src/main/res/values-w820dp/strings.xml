@@ -5,4 +5,6 @@
     <string name="file_select">请选择文件</string>
     <string name="action_cancel">取消</string>
     <string name="action_done">完成</string>
+    <string name="shoot_video_reminder">1.请将手机横向拍摄\n2.请拍摄到所有房间\n3.请缓慢移动手机拍摄\n4.您可介绍该房源信息</string>
+    <string name="shoot_video_time_warn">请注意拍摄时间，一般不超过3min</string>
 </resources>
