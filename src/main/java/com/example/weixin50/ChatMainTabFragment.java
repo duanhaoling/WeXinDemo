@@ -65,10 +65,15 @@ public class ChatMainTabFragment extends Fragment {
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     private void initViews() {
         bts.get(0).setOnClickListener(view -> jsonObjectRequest());
 
-        bts.get(1).setOnClickListener(view -> testImageLoader());
+        bts.get(1).setOnClickListener(view -> testNotification());
 
         bts.get(2).setOnClickListener(view -> setPrefer());
 
@@ -79,7 +84,13 @@ public class ChatMainTabFragment extends Fragment {
 //            startActivity(intent);
             gotoActivity(ShootVideoActivity.class);
         });
+        testImageLoader();
     }
+
+    private void testNotification() {
+
+    }
+
 
     private void gotoActivity(Class<? extends AppCompatActivity> clazz) {
         Intent intent = new Intent(getContext(), clazz);
@@ -94,7 +105,6 @@ public class ChatMainTabFragment extends Fragment {
         String url = "http://imgsrc.baidu.com/forum/pic/item/2fdda3cc7cd98d10ab49e9b2213fb80e7aec9090.jpg";
         imageLoader.displayImage(url, iv_chat);
     }
-
 
     public void jsonObjectRequest() {
         Log.d("duanhao", "jsonObject.toString()");
@@ -173,6 +183,7 @@ public class ChatMainTabFragment extends Fragment {
         requestQueue.add(jsonObjectRequest);
     }
 
+
     private void getPrefer() {
         String url = "http://api.anjuke.com/weiliao/imcenter/getPrefer";
         final Map<String, String> params = new HashMap<>();
@@ -199,11 +210,5 @@ public class ChatMainTabFragment extends Fragment {
             }
         };
         requestQueue.add(request);
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 }

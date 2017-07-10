@@ -21,7 +21,7 @@ import com.example.weixin50.widget.BadgeView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class WeiXinDemoActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private FragmentStatePagerAdapter mAdapter;
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         if (mBadgeView == null) {
-                            mBadgeView = new BadgeView(MainActivity.this);
+                            mBadgeView = new BadgeView(WeiXinDemoActivity.this);
                             mBadgeView.setBadgeCount(7);
                             mLinearLayout.addView(mBadgeView);
                         } else {

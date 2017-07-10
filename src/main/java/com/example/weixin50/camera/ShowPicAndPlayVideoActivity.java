@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.weixin50.MainActivity;
+import com.example.weixin50.WeiXinDemoActivity;
 import com.example.weixin50.R;
 
 import java.io.BufferedOutputStream;
@@ -159,7 +159,7 @@ public class ShowPicAndPlayVideoActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.iv_confirm:
-                Intent i = new Intent(this, MainActivity.class);
+                Intent i = new Intent(this, WeiXinDemoActivity.class);
                 if(isRecord){
                     i.putExtra("toMainPath", videoPath);
                 }else{
