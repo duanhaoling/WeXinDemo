@@ -1,5 +1,6 @@
 package com.example.weixin50;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -100,10 +101,11 @@ public class MainActivity extends AppCompatActivity {
                         if (mBadgeView == null) {
                             mBadgeView = new BadgeView(MainActivity.this);
                             mBadgeView.setBadgeCount(7);
+                            mLinearLayout.addView(mBadgeView);
                         } else {
                             mLinearLayout.removeView(mBadgeView);
+                            mBadgeView = null;
                         }
-                        mLinearLayout.addView(mBadgeView);
                         mChatTv.setTextColor(Color.parseColor("#008000"));
                         break;
                     case 1:
@@ -149,5 +151,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

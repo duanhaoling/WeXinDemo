@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
@@ -233,8 +234,10 @@ public class ShootVideoActivity extends AppCompatActivity implements SurfaceHold
     }
 
     private void initWindowFeature() {
-        getSupportActionBar().hide();
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏 // crash
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().hide();
+//        }
+        requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏 // crash
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);// 设置全屏
 

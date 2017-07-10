@@ -20,8 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.weixin50.imageloader.PermissionUtils;
-import com.example.weixin50.imageloader.UriUtils;
+import com.example.weixin50.util.PermissionUtils;
+import com.example.weixin50.util.UriUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
@@ -36,6 +36,7 @@ import static com.example.weixin50.R.layout.tab03;
 
 /**
  * Created by ldh on 2016/8/31 0031.
+ * 图片相关demo
  */
 public class ContactMainTabFragment extends Fragment implements View.OnClickListener {
     public static final int REQUEST_CODE_ALBUM = 100;
@@ -126,9 +127,6 @@ public class ContactMainTabFragment extends Fragment implements View.OnClickList
         startActivityForResult(intent, REQUEST_CODE_ALBUM);
     }
 
-    /**
-     * 不走fragment中的回调，走Activity中的回调
-     */
     @Deprecated
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -154,7 +152,7 @@ public class ContactMainTabFragment extends Fragment implements View.OnClickList
 
 
     /**
-     * 走fragment中的回调，不走activity中的回调
+     * 走fragment中的回调，通过activity回调的super方法
      *
      * @param requestCode
      * @param resultCode

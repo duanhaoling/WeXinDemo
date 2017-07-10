@@ -1,4 +1,4 @@
-package com.example.weixin50.imageloader;
+package com.example.weixin50.util;
 
 import android.content.Context;
 import android.database.Cursor;
