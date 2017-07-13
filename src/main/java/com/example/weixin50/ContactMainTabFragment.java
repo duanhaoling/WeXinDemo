@@ -32,8 +32,6 @@ import java.io.File;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static com.example.weixin50.R.layout.tab03;
-
 /**
  * Created by ldh on 2016/8/31 0031.
  * 图片相关demo
@@ -55,7 +53,7 @@ public class ContactMainTabFragment extends Fragment implements View.OnClickList
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(tab03, container, false);
+        View view = inflater.inflate(R.layout.tab03, container, false);
         ButterKnife.bind(this, view);
         initView();
         mActivity = getActivity();

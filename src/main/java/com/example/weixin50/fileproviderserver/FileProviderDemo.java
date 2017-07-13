@@ -80,7 +80,7 @@ public class FileProviderDemo extends AppCompatActivity {
 
             //在上面的目录下创建10个文件，用来与客户端应用共享
             for (int i = 0; i < 10; i++) {
-                String filename = "内部文件" + i + ".txt";
+                String filename = "微信内部文件" + i + ".txt";
                 String content = "这是第" + i + "个内部文件";
                 FileOutputStream fos;
 

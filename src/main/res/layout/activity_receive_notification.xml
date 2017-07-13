@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_remote_views_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp"
+        tools:context="com.example.weixin50.remotetest.ReceiveNotificationActivity">
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="在另一个APP：Mydemo中发出更新Remoteviews的广播，在这个页面接收" />
+
+    </LinearLayout>
+</ScrollView>

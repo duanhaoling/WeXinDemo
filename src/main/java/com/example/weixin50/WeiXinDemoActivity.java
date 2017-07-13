@@ -1,11 +1,10 @@
 package com.example.weixin50;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -24,7 +23,7 @@ import java.util.List;
 public class WeiXinDemoActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
-    private FragmentStatePagerAdapter mAdapter;
+    private FragmentPagerAdapter mAdapter;
     private List<Fragment> mDatas;
 
     private TextView mChatTv;
@@ -36,6 +35,8 @@ public class WeiXinDemoActivity extends AppCompatActivity {
     private int mScreen1_3;
     private ImageView mTabline;
     private int mCurrentIndex;
+    private ChatMainTabFragment tab01;
+    private FriendMainTabFragment tab02;
     private ContactMainTabFragment tab03;
 
     @Override
@@ -67,16 +68,16 @@ public class WeiXinDemoActivity extends AppCompatActivity {
         mContactTv = (TextView) findViewById(R.id.tv_contact);
         mLinearLayout = (LinearLayout) findViewById(R.id.ll_chat_wapper);
 
-
         mDatas = new ArrayList<>();
-        ChatMainTabFragment tab01 = new ChatMainTabFragment();
-        FriendMainTabFragment tab02 = new FriendMainTabFragment();
+        tab01 = new ChatMainTabFragment();
+        tab02 = new FriendMainTabFragment();
         tab03 = new ContactMainTabFragment();
         mDatas.add(tab01);
         mDatas.add(tab02);
         mDatas.add(tab03);
         mAdapter = new MyAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mAdapter);
+        mViewPager.setOffscreenPageLimit(2);//不设置为2，两边的页面来回切换时会被置为空白
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -134,7 +135,7 @@ public class WeiXinDemoActivity extends AppCompatActivity {
         mContactTv.setTextColor(Color.BLACK);
     }
 
-    class MyAdapter extends FragmentStatePagerAdapter {
+    class MyAdapter extends FragmentPagerAdapter {
         public MyAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -150,9 +151,4 @@ public class WeiXinDemoActivity extends AppCompatActivity {
         }
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 }

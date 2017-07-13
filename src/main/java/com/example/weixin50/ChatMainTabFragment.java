@@ -22,7 +22,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.weixin50.camera.ShootVideoActivity;
+import com.example.weixin50.fileproviderserver.FileProviderDemo;
 import com.example.weixin50.imageloader.ImageLoader;
+import com.example.weixin50.remotetest.ReceiveNotificationActivity;
+import com.example.weixin50.test.ExtraValues;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,12 +39,11 @@ import butterknife.ButterKnife;
 
 /**
  * Created by ldh on 2016/8/31 0031.
- *
  */
 public class ChatMainTabFragment extends Fragment {
     @Bind(R.id.tv_tab01)
     TextView mTv;
-    @Bind({R.id.bt1, R.id.bt2, R.id.bt3, R.id.bt4, R.id.bt5})
+    @Bind({R.id.bt1, R.id.bt2, R.id.bt3, R.id.bt4, R.id.bt5, R.id.bt6})
     List<Button> bts;
     @Bind(R.id.iv_chat)
     ImageView iv_chat;
@@ -73,8 +75,6 @@ public class ChatMainTabFragment extends Fragment {
     private void initViews() {
         bts.get(0).setOnClickListener(view -> jsonObjectRequest());
 
-        bts.get(1).setOnClickListener(view -> testNotification());
-
         bts.get(2).setOnClickListener(view -> setPrefer());
 
         bts.get(3).setOnClickListener(view -> getPrefer());
@@ -84,11 +84,15 @@ public class ChatMainTabFragment extends Fragment {
 //            startActivity(intent);
             gotoActivity(ShootVideoActivity.class);
         });
+
+        bts.get(1).setOnClickListener(view -> gotoActivity(FileProviderDemo.class));
+
+        bts.get(5).setOnClickListener(view -> testNotification());
         testImageLoader();
     }
 
     private void testNotification() {
-
+        gotoActivity(ReceiveNotificationActivity.class);
     }
 
 
@@ -156,12 +160,13 @@ public class ChatMainTabFragment extends Fragment {
         Map<String, Object> params = new HashMap<>();
         params.put("user_id", "ab07f96b1e05b2e80e10d7998e9aedf0");
         params.put("user_source", "4");
-//        ExtraValues values = new ExtraValues("海欣小区，金港花园", "三室一厅");
+        ExtraValues values = new ExtraValues("海欣小区，金港花园", "三室一厅");
 
         String sprefer = "{\"preferCommunities\":\"下城 长庆\",\"preferProperties\":\"户型不限 120-150万元\"}";
         try {
             JSONObject json = new JSONObject(sprefer);
             params.put("prefer", json.toString());
+//            params.put("prefer", values);
         } catch (JSONException e) {
             e.printStackTrace();
         }

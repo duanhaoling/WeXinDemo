@@ -37,7 +37,13 @@
             android:id="@+id/bt2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TestImageLoader" />
+            android:text="TestFileProvider" />
+
+        <Button
+            android:id="@+id/bt6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TestNotification" />
 
         <TextView
             android:id="@+id/tv_tab01"
