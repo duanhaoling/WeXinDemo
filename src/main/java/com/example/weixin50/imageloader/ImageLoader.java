@@ -15,8 +15,20 @@ import java.util.concurrent.Executors;
  * Created by ldh on 2016/9/3 0003.
  */
 public class ImageLoader {
-    //图片缓存
-    ImageCache mImageCache = new ImageCache();
+    //    //图片内存缓存
+//    MemoryCache mImageCache = new MemoryCache();
+//    //SD卡缓存
+//    DiskCache mDiskCache = new DiskCache();
+//    //双缓存
+//    DoubleCache mDoubleCache = new DoubleCache();
+    //图片缓存，设置默认值
+    ImageCache mImageCache = new MemoryCache();
+
+    //依赖注入缓存实现
+    public void setImageCache(ImageCache cache) {
+        mImageCache = cache;
+    }
+
     //线程池，线程数量为CPU的数量
     ExecutorService mExecutorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
@@ -26,7 +38,12 @@ public class ImageLoader {
             imageView.setImageBitmap(bitmap);
             return;
         }
-        imageView.setTag(url);
+        //没有缓存，则提交给线程池进行异步下载图片
+        submitLoadRequest(url, imageView);
+    }
+
+    private void submitLoadRequest(final String url, final ImageView imageView) {
+        imageView.setTag(url);//tag的用处之一
         mExecutorService.submit(new Runnable() {
             @Override
             public void run() {
@@ -49,7 +66,7 @@ public class ImageLoader {
         try {
             URL url = new URL(imageUrl);
             //开启连接
-            final HttpURLConnection conn= (HttpURLConnection) url.openConnection();
+            final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             //设置超时的时间5000毫秒
             conn.setConnectTimeout(5000);
             //设置获取图片的方式为get
@@ -69,7 +86,7 @@ public class ImageLoader {
             conn.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (in != null) {
                     in.close();
