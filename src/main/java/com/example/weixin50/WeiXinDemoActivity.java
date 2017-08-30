@@ -1,13 +1,18 @@
 package com.example.weixin50;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -20,32 +25,69 @@ import com.example.weixin50.widget.BadgeView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class WeiXinDemoActivity extends AppCompatActivity {
 
-    private ViewPager mViewPager;
+    private static final String TAG = "WeiXinDemoActivity";
+    @Bind(R.id.iv_main_search)
+    ImageView ivMainSearch;
+    @Bind(R.id.iv_main_add)
+    ImageView ivMainAdd;
+    @Bind(R.id.iv_main_more)
+    ImageView ivMainMore;
+    @Bind(R.id.tv_chat)
+    TextView mChatTv;
+    @Bind(R.id.ll_chat_wapper)
+    LinearLayout mLinearLayout;
+    @Bind(R.id.tv_friend)
+    TextView mFriendTv;
+    @Bind(R.id.tv_contact)
+    TextView mContactTv;
+    @Bind(R.id.iv_tabline)
+    ImageView mTabline;
+    @Bind(R.id.viewpager_wx)
+    ViewPager mViewPager;
     private FragmentPagerAdapter mAdapter;
     private List<Fragment> mDatas;
 
-    private TextView mChatTv;
-    private TextView mFriendTv;
-    private TextView mContactTv;
-    private LinearLayout mLinearLayout;
     private BadgeView mBadgeView;
 
     private int mScreen1_3;
-    private ImageView mTabline;
     private int mCurrentIndex;
     private ChatMainTabFragment tab01;
     private FriendMainTabFragment tab02;
     private ContactMainTabFragment tab03;
+    private WifiManager wifiMgr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         initTabLine();
         initView();
+        ivMainSearch.setOnClickListener(v -> {
+            testWifi();
+        });
+    }
+
+
+    private void testWifi() {
+        wifiMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        int wifiState = wifiMgr.getWifiState();
+        WifiInfo info = wifiMgr.getConnectionInfo();
+        String wifiId = info != null ? info.getSSID() : null;
+        Log.d(TAG, "wifiId:" + wifiId);
+        if (info == null) return;
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(info.getSSID())
+                .setMessage(info.toString())
+                .setPositiveButton("yes", null)
+                .show();
+
     }
 
     private void initTabLine() {
@@ -62,11 +104,6 @@ public class WeiXinDemoActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mViewPager = (ViewPager) findViewById(R.id.viewpager_wx);
-        mChatTv = (TextView) findViewById(R.id.tv_chat);
-        mFriendTv = (TextView) findViewById(R.id.tv_friend);
-        mContactTv = (TextView) findViewById(R.id.tv_contact);
-        mLinearLayout = (LinearLayout) findViewById(R.id.ll_chat_wapper);
 
         mDatas = new ArrayList<>();
         tab01 = new ChatMainTabFragment();
